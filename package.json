@@ -1,0 +1,20 @@
+{
+  "name": "chat",
+  "version": "1.0.0",
+  "description": "Chat con zero mq",
+  "main": "npm run cliente",
+  "type": "module",
+  "scripts": {
+    "cliente": "node mainCliente.js",
+		"servidor": "node mainServidor.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://dv"
+  },
+  "author": "david Valdaliso lopez",
+  "license": "ISC",
+  "dependencies": {
+    "zeromq": "^5.3.1"
+  }
+}
