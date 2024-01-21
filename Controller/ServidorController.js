@@ -37,18 +37,19 @@ export class Servidor{
     recibirMensaje() {
         
         this.socketParaResponder.on('message', function(message) {
-            console.log("servidor recibo petición: "+" [", message.toString(), "]")
-           
                 this.responder()
                 this.distribuye(message)
         }.bind(this)) 
     }
     
     responder(){
-        if (this.socketParaResponder) 
-                    this.socketParaResponder.send("enviado")
+        if (this.socketParaResponder) {
+            console.log("enviado")
+            this.socketParaResponder.send("enviado")
+        }
     }
     distribuye(message){
+        console.log("distribuye")
         this.socketParaDistribuir.send(['recibe',message])
     }
 

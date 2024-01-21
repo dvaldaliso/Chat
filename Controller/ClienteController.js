@@ -1,5 +1,6 @@
 // "importamos biblioteca zeromq"
 import * as zmq from "zeromq"
+import Mensaje from "../Model/mensaje.js"
 export class Cliente{
     
     constructor(urlEnvia, urlRecibe, nombre)
@@ -29,19 +30,23 @@ export class Cliente{
     // cuando reciba respuestas
     recibirMensaje(){
         this.socketParaPedir.on("message", function(respuesta) {
-            console.log("cliente ", this.MI_NOMBRE + ": recibo respuesta " ,  ": [", respuesta.toString(), ']')
+            console.log("respuesta ",  respuesta.toString())
           
         }.bind(this))
 
         this.socketParaRecibir.on("message", function(topic, message) {
-            console.log('Received message: ', message.toString());
+            let objectMessage = JSON.parse(message);
+
+            console.log('Received message from : ', objectMessage.name, " mensaje :", objectMessage.message );
           })
     }
 
    
     enviarMensaje (message){
         console.log("enviando mensaje ")
-        this.socketParaPedir.send([message])
+        let messageN=new Mensaje(this.MI_NOMBRE,message)
+        var messageSend = JSON.stringify(messageN);
+        this.socketParaPedir.send([messageSend])
                 
     }
     close(){
