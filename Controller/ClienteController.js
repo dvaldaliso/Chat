@@ -11,6 +11,7 @@ export class Cliente{
         this.socketParaRecibir = zmq.socket('sub')
         this.MI_NOMBRE=nombre
         this.connect()
+        this.recibirConfirmacion()
         this.recibirMensaje()
         this.close()
     }
@@ -28,11 +29,15 @@ export class Cliente{
     }
     // ....................................................
     // cuando reciba respuestas
-    recibirMensaje(){
+    
+    recibirConfirmacion(){
         this.socketParaPedir.on("message", function(respuesta) {
             console.log("respuesta ",  respuesta.toString())
           
         }.bind(this))
+    }
+    recibirMensaje(){
+       
 
         this.socketParaRecibir.on("message", function(topic, message) {
             let objectMessage = JSON.parse(message);

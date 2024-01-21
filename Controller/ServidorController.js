@@ -38,7 +38,7 @@ export class Servidor{
         
         this.socketParaResponder.on('message', function(message) {
                 this.responder()
-                this.distribuye(message)
+                this.distribuyeMsg(message)
         }.bind(this)) 
     }
     
@@ -48,7 +48,7 @@ export class Servidor{
             this.socketParaResponder.send("enviado")
         }
     }
-    distribuye(message){
+    distribuyeMsg(message){
         console.log("distribuye")
         this.socketParaDistribuir.send(['recibe',message])
     }
