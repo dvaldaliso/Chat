@@ -46,7 +46,10 @@ export class Cliente{
           })
     }
 
-   
+   /**
+    * 
+    * @param {string} message //hacer esto para todas las funciones
+    */
     enviarMensaje (message){
         console.log("enviando mensaje ")
         let messageN=new Mensaje(this.MI_NOMBRE,message)
